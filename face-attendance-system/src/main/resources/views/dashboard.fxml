@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="com.attendance.controllers.DashboardController"
+            styleClass="root-pane">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox styleClass="header-section">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="🎯 Face Recognition Attendance System" styleClass="app-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="dateLabel" styleClass="date-label"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="30" styleClass="main-content">
+            <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+            
+            <!-- Stats Cards -->
+            <HBox spacing="20" alignment="CENTER">
+                <VBox styleClass="stat-card" alignment="CENTER">
+                    <Label text="👥" styleClass="stat-icon"/>
+                    <Label fx:id="totalUsersLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Total Users" styleClass="stat-label"/>
+                </VBox>
+                
+                <VBox styleClass="stat-card stat-success" alignment="CENTER">
+                    <Label text="✅" styleClass="stat-icon"/>
+                    <Label fx:id="presentTodayLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Present Today" styleClass="stat-label"/>
+                </VBox>
+                
+                <VBox styleClass="stat-card stat-warning" alignment="CENTER">
+                    <Label text="❌" styleClass="stat-icon"/>
+                    <Label fx:id="absentTodayLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Absent Today" styleClass="stat-label"/>
+                </VBox>
+            </HBox>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="👤 Register New User" onAction="#openRegistration" styleClass="action-btn primary-btn"/>
+                <Button text="📷 Mark Attendance" onAction="#openAttendance" styleClass="action-btn success-btn"/>
+                <Button text="📊 View Reports" onAction="#openReports" styleClass="action-btn info-btn"/>
+                <Button text="🔄 Refresh" onAction="#refreshData" styleClass="action-btn secondary-btn"/>
+            </HBox>
+            
+            <!-- Recent Attendance Table -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+                <Label text="📋 Today's Attendance" styleClass="section-title"/>
+                <TableView fx:id="recentTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+                        <TableColumn fx:id="deptColumn" text="Department" prefWidth="180"/>
+                        <TableColumn fx:id="timeColumn" text="Check In" prefWidth="120"/>
+                        <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No attendance records for today" styleClass="placeholder-text"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- Dashboard — now embedded inside the main layout content area -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.attendance.controllers.DashboardController"
+      spacing="25" styleClass="page-content">
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Stats Cards Row -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox styleClass="stat-card" alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label text="👥" styleClass="stat-icon"/>
+            <Label fx:id="totalUsersLabel" text="0" styleClass="stat-number"/>
+            <Label text="Total Students" styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-success-card" alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label text="✅" styleClass="stat-icon"/>
+            <Label fx:id="presentTodayLabel" text="0" styleClass="stat-number stat-number-green"/>
+            <Label text="Present Today" styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-danger-card" alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label text="❌" styleClass="stat-icon"/>
+            <Label fx:id="absentTodayLabel" text="0" styleClass="stat-number stat-number-red"/>
+            <Label text="Absent Today" styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-info-card" alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Label text="📈" styleClass="stat-icon"/>
+            <Label fx:id="attendancePercentLabel" text="0%" styleClass="stat-number stat-number-blue"/>
+            <Label text="Attendance %" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <!-- Middle Row: Activity Feed + Quick Actions -->
+    <HBox spacing="20" VBox.vgrow="SOMETIMES">
+        <!-- Recent Activity Feed -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="panel-card">
+            <Label text="🕐 Recent Activity" styleClass="panel-title"/>
+            <ListView fx:id="activityFeed" VBox.vgrow="ALWAYS" styleClass="activity-list" prefHeight="200">
+                <placeholder>
+                    <Label text="No recent activity" styleClass="placeholder-text"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+
+        <!-- Quick Actions -->
+        <VBox spacing="12" minWidth="220" styleClass="panel-card">
+            <Label text="⚡ Quick Actions" styleClass="panel-title"/>
+            <Button text="📷  Mark Attendance" onAction="#quickMarkAttendance"
+                    styleClass="action-btn success-btn" maxWidth="Infinity"/>
+            <Button text="➕  Register Student" onAction="#quickRegister"
+                    styleClass="action-btn primary-btn" maxWidth="Infinity"/>
+            <Button text="📄  Export Reports" onAction="#quickReports"
+                    styleClass="action-btn info-btn" maxWidth="Infinity"/>
+            <Button text="🔄  Refresh Data" onAction="#refreshData"
+                    styleClass="action-btn secondary-btn" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+
+    <!-- Bottom: Today's Attendance Table -->
+    <VBox spacing="10" VBox.vgrow="ALWAYS" styleClass="panel-card">
+        <Label text="📋 Today's Attendance" styleClass="panel-title"/>
+        <TableView fx:id="recentTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="deptColumn" text="Department" prefWidth="180"/>
+                <TableColumn fx:id="timeColumn" text="Check In" prefWidth="120"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+            </columns>
+            <placeholder>
+                <Label text="No attendance records for today" styleClass="placeholder-text"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+</VBox>

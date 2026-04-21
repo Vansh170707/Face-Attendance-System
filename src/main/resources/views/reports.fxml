@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- Reports — embedded page -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.attendance.controllers.ReportsController"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Filters Section -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="filter-bar">
+        <Label text="🔍 Filter:" styleClass="filter-label"/>
+        <ComboBox fx:id="filterCombo" styleClass="modern-combo" prefWidth="140"/>
+
+        <Label text="From:" styleClass="filter-label"/>
+        <DatePicker fx:id="startDatePicker" styleClass="modern-date"/>
+
+        <Label text="To:" styleClass="filter-label"/>
+        <DatePicker fx:id="endDatePicker" styleClass="modern-date"/>
+
+        <Button text="Apply" onAction="#applyFilter" styleClass="action-btn primary-btn"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <TextField fx:id="searchField" promptText="🔍 Search by name..." styleClass="modern-input" prefWidth="200"/>
+        <Button text="🚫 Mark Absent" onAction="#markAbsent" styleClass="action-btn danger-btn"/>
+        <Button text="📄 PDF" onAction="#exportPDF" styleClass="action-btn info-btn"/>
+        <Button text="📊 Excel" onAction="#exportExcel" styleClass="action-btn success-btn"/>
+    </HBox>
+
+    <!-- Report Table -->
+    <VBox VBox.vgrow="ALWAYS" styleClass="panel-card" spacing="0">
+        <TableView fx:id="reportTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="180"/>
+                <TableColumn fx:id="deptColumn" text="Department" prefWidth="150"/>
+                <TableColumn fx:id="checkInColumn" text="Check In" prefWidth="100"/>
+                <TableColumn fx:id="checkOutColumn" text="Check Out" prefWidth="100"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+            </columns>
+            <placeholder>
+                <Label text="No records found for selected date range" styleClass="placeholder-text"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <!-- Footer -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label fx:id="totalRecordsLabel" text="Total Records: 0" styleClass="total-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="com.attendance.controllers.AttendanceController"
+            styleClass="root-pane" prefWidth="1000" prefHeight="700">
+    
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header-section">
+            <Label text="📷 Mark Attendance" styleClass="page-title"/>
+        </VBox>
+    </top>
+    
+    <!-- Main Content -->
+    <center>
+        <HBox spacing="40" alignment="CENTER">
+            <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+            
+            <!-- Camera Section -->
+            <VBox spacing="20" alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="🎥 Live Camera Feed" styleClass="section-title"/>
+                <StackPane styleClass="camera-frame-large">
+                    <ImageView fx:id="cameraView" fitWidth="550" fitHeight="400" preserveRatio="true"/>
+                </StackPane>
+                
+                <HBox spacing="10" alignment="CENTER">
+                    <VBox alignment="CENTER" styleClass="recognition-card">
+                        <Label fx:id="recognizedLabel" text="👤 No face detected" styleClass="recognized-name"/>
+                        <Label fx:id="confidenceLabel" text="-" styleClass="confidence-label"/>
+                    </VBox>
+                </HBox>
+                
+                <Label fx:id="statusLabel" text="Click 'Start' to begin" styleClass="status-label"/>
+                
+                <HBox spacing="20" alignment="CENTER">
+                    <Button fx:id="startBtn" text="▶️ Start" onAction="#startAttendance" 
+                            styleClass="action-btn success-btn"/>
+                    <Button fx:id="stopBtn" text="⏹️ Stop" onAction="#stopAttendance" 
+                            styleClass="action-btn danger-btn"/>
+                    <Button text="🚪 Close" onAction="#closeWindow" styleClass="action-btn secondary-btn"/>
+                </HBox>
+            </VBox>
+            
+            <!-- Marked List Section -->
+            <VBox spacing="15" minWidth="280" styleClass="sidebar-section">
+                <Label text="✅ Marked Today" styleClass="section-title"/>
+                <ListView fx:id="markedList" VBox.vgrow="ALWAYS" styleClass="marked-list">
+                    <placeholder>
+                        <Label text="No attendance marked yet" styleClass="placeholder-text"/>
+                    </placeholder>
+                </ListView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

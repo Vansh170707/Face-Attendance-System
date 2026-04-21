@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<!-- Attendance — embedded page -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.attendance.controllers.AttendanceController"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <HBox spacing="30" VBox.vgrow="ALWAYS">
+        <!-- Camera Section -->
+        <VBox spacing="20" alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="panel-card">
+            <!-- Status Indicators -->
+            <HBox spacing="15" alignment="CENTER">
+                <HBox spacing="5" alignment="CENTER">
+                    <javafx.scene.shape.Circle fx:id="cameraDot" radius="5" style="-fx-fill: #00C896;"/>
+                    <Label text="Camera" styleClass="status-indicator-label"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <javafx.scene.shape.Circle radius="5" style="-fx-fill: #1E90FF;"/>
+                    <Label text="Model Loaded" styleClass="status-indicator-label"/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER">
+                    <javafx.scene.shape.Circle radius="5" style="-fx-fill: #FFD700;"/>
+                    <Label text="Ready to Scan" styleClass="status-indicator-label"/>
+                </HBox>
+            </HBox>
+
+            <StackPane fx:id="cameraFrame" styleClass="camera-frame-glow">
+                <ImageView fx:id="cameraView" fitWidth="520" fitHeight="380" preserveRatio="true"/>
+            </StackPane>
+
+            <HBox spacing="10" alignment="CENTER">
+                <VBox alignment="CENTER" styleClass="recognition-card">
+                    <Label fx:id="recognizedLabel" text="👤 No face detected" styleClass="recognized-name"/>
+                    <Label fx:id="confidenceLabel" text="-" styleClass="confidence-label"/>
+                </VBox>
+            </HBox>
+
+            <Label fx:id="statusLabel" text="Click 'Start' to begin" styleClass="status-label"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="startBtn" text="▶  Start Scanning" onAction="#startAttendance"
+                        styleClass="action-btn success-btn"/>
+                <Button fx:id="stopBtn" text="⏹  Stop" onAction="#stopAttendance"
+                        styleClass="action-btn danger-btn"/>
+            </HBox>
+        </VBox>
+
+        <!-- Marked List Section -->
+        <VBox spacing="15" minWidth="260" styleClass="panel-card">
+            <Label text="✅ Marked Today" styleClass="panel-title"/>
+            <ListView fx:id="markedList" VBox.vgrow="ALWAYS" styleClass="activity-list">
+                <placeholder>
+                    <Label text="No attendance marked yet" styleClass="placeholder-text"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<!-- Registration — embedded page -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.attendance.controllers.RegistrationController"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <HBox spacing="30" VBox.vgrow="ALWAYS">
+        <!-- Camera Section -->
+        <VBox spacing="20" alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="panel-card">
+            <Label text="📷 Camera Preview" styleClass="panel-title"/>
+            <StackPane styleClass="camera-frame-glow">
+                <ImageView fx:id="cameraView" fitWidth="400" fitHeight="300" preserveRatio="true"/>
+            </StackPane>
+            <Label fx:id="statusLabel" text="Initializing camera..." styleClass="status-label"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="captureBtn" text="📸 Capture Face" onAction="#captureFace"
+                        styleClass="action-btn primary-btn" disable="true"/>
+                <Button text="🔄 Retake" onAction="#retakePhoto" styleClass="action-btn secondary-btn"/>
+            </HBox>
+        </VBox>
+
+        <!-- Form Section -->
+        <VBox spacing="20" alignment="TOP_CENTER" minWidth="320" styleClass="panel-card">
+            <Label text="📝 Student Details" styleClass="panel-title"/>
+
+            <VBox spacing="6">
+                <Label text="Full Name *" styleClass="field-label"/>
+                <TextField fx:id="nameField" promptText="Enter full name" styleClass="modern-input"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Email" styleClass="field-label"/>
+                <TextField fx:id="emailField" promptText="Enter email address" styleClass="modern-input"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Department" styleClass="field-label"/>
+                <ComboBox fx:id="departmentCombo" styleClass="modern-combo" maxWidth="Infinity"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="registerBtn" text="✅ Register" onAction="#registerUser"
+                        styleClass="action-btn success-btn" disable="true"/>
+                <Button text="❌ Cancel" onAction="#closeWindow" styleClass="action-btn danger-btn"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

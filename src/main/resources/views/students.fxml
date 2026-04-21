@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- Students Management — embedded page -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.attendance.controllers.StudentsController"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+    <!-- Search Bar -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="filter-bar">
+        <Label text="👥 All Registered Students" styleClass="panel-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" promptText="🔍 Search students..." styleClass="modern-input" prefWidth="250"/>
+        <Label fx:id="studentCountLabel" text="0 students" styleClass="total-label"/>
+    </HBox>
+
+    <!-- Student Cards Grid -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="card-scroll-pane">
+        <FlowPane fx:id="studentGrid" hgap="20" vgap="20" styleClass="student-grid">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+        </FlowPane>
+    </ScrollPane>
+</VBox>

@@ -1,0 +1,8 @@
+*.zip
+*.pdf
+target/
+.idea/
+.DS_Store
+faces/
+*.db
+*.jpg

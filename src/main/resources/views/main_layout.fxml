@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.attendance.controllers.MainLayoutController"
+            styleClass="root-pane" fx:id="rootPane">
+
+    <!-- LEFT: Sidebar Navigation -->
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="240" spacing="0">
+            <!-- Brand Section -->
+            <VBox styleClass="sidebar-brand" alignment="CENTER" spacing="5">
+                <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+                <Label text="🎯" styleClass="brand-icon"/>
+                <Label fx:id="brandLabel" text="FaceAttend" styleClass="brand-title"/>
+                <Label fx:id="brandSubLabel" text="Smart Attendance" styleClass="brand-subtitle"/>
+            </VBox>
+
+            <Region styleClass="sidebar-divider" prefHeight="1"/>
+
+            <!-- Nav Items -->
+            <VBox styleClass="nav-items" spacing="4">
+                <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
+
+                <Button fx:id="navDashboard" text="  📊  Dashboard" onAction="#showDashboard"
+                        styleClass="nav-btn, nav-btn-active" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+                <Button fx:id="navAttendance" text="  📷  Mark Attendance" onAction="#showAttendance"
+                        styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+                <Button fx:id="navStudents" text="  👥  Manage Students" onAction="#showStudents"
+                        styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+                <Button fx:id="navReports" text="  📄  Reports" onAction="#showReports"
+                        styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+                <Button fx:id="navRegister" text="  ➕  Register New" onAction="#showRegistration"
+                        styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Sidebar Footer -->
+            <VBox styleClass="sidebar-footer" spacing="8">
+                <padding><Insets top="15" right="10" bottom="20" left="10"/></padding>
+                <Region styleClass="sidebar-divider" prefHeight="1"/>
+                <Button text="  ⚙️  Settings" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT"/>
+                <Label text="v2.0 — Premium" styleClass="version-label"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- TOP: Header Bar -->
+    <top>
+        <HBox styleClass="top-header" alignment="CENTER_LEFT" spacing="15">
+            <padding><Insets top="12" right="25" bottom="12" left="25"/></padding>
+
+            <Button fx:id="sidebarToggle" text="☰" onAction="#toggleSidebar" styleClass="sidebar-toggle-btn"/>
+
+            <Label fx:id="pageTitle" text="Dashboard" styleClass="header-page-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="clockLabel" styleClass="header-clock"/>
+            <Region prefWidth="15"/>
+            <Circle radius="5" styleClass="status-dot-green"/>
+            <Label text="System Online" styleClass="header-status"/>
+            <Region prefWidth="15"/>
+            <Label text="👤 Admin" styleClass="header-admin"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER: Content Area (pages loaded here) -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- Content will be injected dynamically -->
+        </StackPane>
+    </center>
+
+</BorderPane>
